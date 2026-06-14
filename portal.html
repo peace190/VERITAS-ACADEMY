@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified Student Workspace & Dashboard | Veritas Academy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="brand-identity">
+                <div class="brand-logo-frame"></div>
+                <span class="brand-title">VERITAS ACADEMY</span>
+            </div>
+            <nav class="main-navigation">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="academics.html" class="nav-link">Academics</a></li>
+                    <li><a href="admissions.html" class="nav-link">Admissions</a></li>
+                    <li><a href="portal.html" class="nav-link">Portal</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="portal-layout">
+        <aside class="portal-sidebar">
+            <div class="portal-profile-summary">
+                <div class="avatar-container">VP</div>
+                <h3 style="color: var(--color-accent); font-size: 1.15rem;">Vincent Peace</h3>
+                <span style="font-size: 0.8rem; color: #94A3B8;">ID: #2026-X9920</span>
+            </div>
+            <nav>
+                <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <li><button class="portal-menu-item-btn active" data-tab="overview">Overview Panel</button></li>
+                    <li><button class="portal-menu-item-btn" data-tab="schedule">Lectures & Modules</button></li>
+                    <li><button class="portal-menu-item-btn" data-tab="circulars">Administrative Node</button></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <section class="portal-workspace-pane">
+            
+            <div id="tab-overview" class="portal-tab-content active">
+                <h2 style="margin-bottom: 2rem; border-bottom: 2px solid rgba(15,30,54,0.05); padding-bottom: 0.5rem;">Academic Overview</h2>
+                <div class="dashboard-matrix">
+                    <div class="metric-data-card">
+                        <span style="font-size: 0.8rem; text-transform: uppercase; color: #64748B; font-weight: 600;">Cumulative GPA</span>
+                        <h2 style="font-size: 2.5rem; margin-top: 0.5rem;">3.94 / 4.0</h2>
+                    </div>
+                    <div class="metric-data-card accented">
+                        <span style="font-size: 0.8rem; text-transform: uppercase; color: #64748B; font-weight: 600;">Research Modules Completed</span>
+                        <h2 style="font-size: 2.5rem; margin-top: 0.5rem;">14 / 16</h2>
+                    </div>
+                    <div class="metric-data-card">
+                        <span style="font-size: 0.8rem; text-transform: uppercase; color: #64748B; font-weight: 600;">Attendance Coefficient</span>
+                        <h2 style="font-size: 2.5rem; margin-top: 0.5rem;">98.4%</h2>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom: 1rem;">Recent Module Graded Actions</h3>
+                <div class="table-wrapper">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th>Module Identification Code</th>
+                                <th>Evaluated Deliverable</th>
+                                <th>Weighting Factor</th>
+                                <th>Assigned Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>STEM-AP-402</td>
+                                <td>Algorithmic Complexity Proof Matrix</td>
+                                <td>25% Total Weight</td>
+                                <td style="color: var(--color-success); font-weight: 600;">A (96%)</td>
+                            </tr>
+                            <tr>
+                                <td>ECON-IB-109</td>
+                                <td>Macro-Stabilization Policy Forecast Paper</td>
+                                <td>40% Total Weight</td>
+                                <td style="color: var(--color-success); font-weight: 600;">A- (91%)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="tab-schedule" class="portal-tab-content">
+                <h2 style="margin-bottom: 2rem; border-bottom: 2px solid rgba(15,30,54,0.05); padding-bottom: 0.5rem;">Active Lecture Matrices</h2>
+                <div class="table-wrapper">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th>Time Interval</th>
+                                <th>Core Academic Module</th>
+                                <th>Assigned Faculty Lead</th>
+                                <th>Physical Hall Location</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>08:30 - 10:30</td>
+                                <td>Advanced Quantum Computations</td>
+                                <td>Dr. Alistair Vance</td>
+                                <td>Computing Cluster Block Alpha</td>
+                            </tr>
+                            <tr>
+                                <td>11:00 - 13:00</td>
+                                <td>Applied Geopolitical Models</td>
+                                <td>Prof. Elena Rostova</td>
+                                <td>Chamber Hall 401</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="tab-circulars" class="portal-tab-content">
+                <h2 style="margin-bottom: 2rem; border-bottom: 2px solid rgba(15,30,54,0.05); padding-bottom: 0.5rem;">Administrative Notification Directives</h2>
+                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <div style="background-color: var(--color-bg-pure); padding: 2rem; border-radius: var(--radius-md); border-left: 4px solid var(--color-accent); box-shadow: var(--shadow-sm);">
+                        <span style="font-size: 0.75rem; font-weight: 600; color: #64748B;">RELEASED JUNE 12, 2026</span>
+                        <h3 style="font-size: 1.15rem; margin: 0.5rem 0;">Summer Term Lab Optimization Schedules</h3>
+                        <p>Server architecture pipelines will go offline for mandatory firmware syncs between 02:00 and 05:00. Adjust your script tasks accordingly to avoid runtime memory drops.</p>
+                    </div>
+                    <div style="background-color: var(--color-bg-pure); padding: 2rem; border-radius: var(--radius-md); border-left: 4px solid var(--color-secondary); box-shadow: var(--shadow-sm);">
+                        <span style="font-size: 0.75rem; font-weight: 600; color: #64748B;">RELEASED JUNE 08, 2026</span>
+                        <h3 style="font-size: 1.15rem; margin: 0.5rem 0;">Ivy League Placement Portfolio Audits</h3>
+                        <p>All candidates planning early-action applications must finalize their core engineering and humanities portfolio evaluations with the administrative team before July 1st.</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
