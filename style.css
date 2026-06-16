@@ -160,7 +160,7 @@ img, svg {
     gap: 0.75rem;
 }
 /* --- Brand Identity Styling Updates --- */
-.brand-logo-img {
+.brand-Logo-img {
     height: 48px; /* Scales the crest nicely inside the 80px high header */
     width: auto;  /* Maintains the crisp aspect ratio of your original image */
     object-fit: contain;
