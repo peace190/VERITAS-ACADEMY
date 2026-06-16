@@ -1,34 +1,72 @@
 /**
  * ==========================================================================
- * UNIVERSAL MASTER APPLICATION ENGINE
+ * UNIVERSAL MASTER APPLICATION ENGINE (UPDATED WITH LIVE DATABASE SYNC)
  * Institution: Elite International Pre-University Academy
- * Architecture: ES6+ Functional Programming, Native Event Interceptors
  * ==========================================================================
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-    
-    // Defer Execution Core Paths
+    // 1. Initialize Functional Systems
     syncUniversalNavigationHighlights();
     initializeRegistrationFormEngine();
     initializeDashboardStateArchitecture();
+    
+    // 2. Initialize Premium Animation Systems
+    initializeScrollRevealEngine();
+    setupMicroInteractions();
+
+    // 3. 🖥️ LIVE DATABASE INTEGRATION
+    // Automatically loads data for the logged-in student when on the portal page
+    if (window.location.pathname.includes('portal')) {
+        // Change this ID string to '2026-M5541' to test Monica's dynamic swap presentation!
+        fetchAndRenderStudentDatabaseData('2026-X9920'); 
+    }
 });
 
 /**
- * 1. DYNAMIC NAVIGATION HIGHLIGHT ENGINE
- * Reads current window locations and runs dynamic lookups across DOM anchor sets 
- * to apply the premium .active style modifier state.
+ * FETCH AND RENDER DYNAMIC DATA FROM BACKEND NODE/MYSQL SERVER
+ */
+function fetchAndRenderStudentDatabaseData(studentId) {
+    fetch(`/api/student/${studentId}`)
+        .then(response => {
+            if (!response.ok) throw new Error('Student data stream unreadable');
+            return response.json();
+        })
+        .then(studentData => {
+            console.log("📦 Live Database Record Loaded:", studentData);
+
+            // Update user identification components
+            const profileNameHeader = document.querySelector('.user-profile-info h3, .profile-name-element');
+            const profileInitialsBadge = document.querySelector('.avatar-initials-badge, .user-avatar');
+
+            if (profileNameHeader) profileNameHeader.textContent = studentData.name;
+            if (profileInitialsBadge) profileInitialsBadge.textContent = studentData.initials;
+
+            // Target dashboard metric boxes matching your HTML layout classes
+            const metricGpa = document.getElementById('metric-gpa') || document.querySelector('.stat-card:nth-child(1) h3');
+            const metricModules = document.getElementById('metric-modules') || document.querySelector('.stat-card:nth-child(2) h3');
+            const metricAttendance = document.getElementById('metric-attendance') || document.querySelector('.stat-card:nth-child(3) h3');
+
+            // Inject the data values safely straight from MySQL rows
+            if (metricGpa) metricGpa.textContent = studentData.gpa;
+            if (metricModules) metricModules.textContent = studentData.modules_completed;
+            if (metricAttendance) metricAttendance.textContent = studentData.attendance;
+        })
+        .catch(err => {
+            console.error("❌ Failed to bind template elements to SQL payload:", err);
+        });
+}
+
+/**
+ * DYNAMIC NAVIGATION HIGHLIGHT ENGINE
  */
 function syncUniversalNavigationHighlights() {
     const activeRoutePath = window.location.pathname.split("/").pop();
     const navigationLinkSet = document.querySelectorAll(".nav-link");
-
-    // Execution fallback to cover structural index routes cleanly
     const trueNormalizedRoute = activeRoutePath === "" ? "index.html" : activeRoutePath;
 
     navigationLinkSet.forEach(anchorNode => {
-        const linkHrefTarget = anchorNode.getAttribute("href");
-        if (linkHrefTarget === trueNormalizedRoute) {
+        if (anchorNode.getAttribute("href") === trueNormalizedRoute) {
             anchorNode.classList.add("active");
         } else {
             anchorNode.classList.remove("active");
@@ -37,24 +75,20 @@ function syncUniversalNavigationHighlights() {
 }
 
 /**
- * 2. STRUCTURAL DATA VALIDATION PROTOCOL (contact.html Form Engine)
- * Prevents unsafe/malformed packet generation, evaluates email regular expressions, 
- * and controls UI error flag injection directly via targeted wrapper toggling.
+ * STRUCTURAL FORM VALIDATION PROTOCOL (contact.html)
  */
 function initializeRegistrationFormEngine() {
     const dynamicFormElement = document.getElementById("academy-inquiry-form");
-    if (!dynamicFormElement) return; // Exit cleanly if evaluating pages missing this node
+    if (!dynamicFormElement) return;
 
     dynamicFormElement.addEventListener("submit", (eventInterceptor) => {
         let logicalFormStateIsSanitized = true;
 
-        // Target Verification Inputs
         const inputFieldName = document.getElementById("applicant-name");
         const inputFieldEmail = document.getElementById("applicant-email");
         const selectFieldTrack = document.getElementById("academic-track");
         const textFieldPayload = document.getElementById("inquiry-payload");
 
-        // Simple Alpha-String Structural Validation
         if (inputFieldName.value.trim().length < 3) {
             flagValidationMarkerError(inputFieldName, true);
             logicalFormStateIsSanitized = false;
@@ -62,7 +96,6 @@ function initializeRegistrationFormEngine() {
             flagValidationMarkerError(inputFieldName, false);
         }
 
-        // Complex Email Matrix Validation Check
         const structuralEmailFilterRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!structuralEmailFilterRegex.test(inputFieldEmail.value.trim())) {
             flagValidationMarkerError(inputFieldEmail, true);
@@ -71,7 +104,6 @@ function initializeRegistrationFormEngine() {
             flagValidationMarkerError(inputFieldEmail, false);
         }
 
-        // Selection Input Vetting Core
         if (selectFieldTrack.value === "") {
             flagValidationMarkerError(selectFieldTrack, true);
             logicalFormStateIsSanitized = false;
@@ -79,7 +111,6 @@ function initializeRegistrationFormEngine() {
             flagValidationMarkerError(selectFieldTrack, false);
         }
 
-        // Structural Content Length Boundary Verification
         if (textFieldPayload.value.trim().length < 15) {
             flagValidationMarkerError(textFieldPayload, true);
             logicalFormStateIsSanitized = false;
@@ -87,20 +118,18 @@ function initializeRegistrationFormEngine() {
             flagValidationMarkerError(textFieldPayload, false);
         }
 
-        // Hault runtime execution if form errors exist
         if (!logicalFormStateIsSanitized) {
             eventInterceptor.preventDefault();
+            dynamicFormElement.classList.add("shake-ui-element");
+            setTimeout(() => dynamicFormElement.classList.remove("shake-ui-element"), 500);
         } else {
-            eventInterceptor.preventDefault(); // Secure premium client-side staging placeholder
+            eventInterceptor.preventDefault();
             alert("🔒 System Event Logged: Inquiry data packet encrypted and transmitted successfully to the registrar node infrastructure.");
             dynamicFormElement.reset();
         }
     });
 }
 
-/**
- * Helper Utility to handle validation classes cleanly
- */
 function flagValidationMarkerError(domInputReference, configurationStateActive) {
     const structuralFormWrapperGroup = domInputReference.closest(".form-group-wrapper");
     if (!structuralFormWrapperGroup) return;
@@ -113,8 +142,7 @@ function flagValidationMarkerError(domInputReference, configurationStateActive) 
 }
 
 /**
- * 3. DISTRIBUTED DATA-WORKSPACE PORTAL TAB MANAGEMENT ENGINE (portal.html UI Core)
- * Manages clean layout state swapping by binding click listeners to dashboard sidebar buttons.
+ * DISTRIBUTED DATA-WORKSPACE PORTAL TAB MANAGEMENT ENGINE (portal.html)
  */
 function initializeDashboardStateArchitecture() {
     const portalMenuButtonCollection = document.querySelectorAll(".portal-menu-item-btn");
@@ -124,21 +152,74 @@ function initializeDashboardStateArchitecture() {
 
     portalMenuButtonCollection.forEach(interactiveControlBtn => {
         interactiveControlBtn.addEventListener("click", () => {
-            
-            // Isolate individual button attributes
             const targetWorkspaceIdentifierKey = interactiveControlBtn.getAttribute("data-tab");
 
-            // Strip active statuses across UI element tree sets
             portalMenuButtonCollection.forEach(btnElement => btnElement.classList.remove("active"));
             activeWorkspacePanes.forEach(paneElement => paneElement.classList.remove("active"));
 
-            // Inject localized active target visibility states
             interactiveControlBtn.classList.add("active");
             
             const selectedPaneNode = document.getElementById(`tab-${targetWorkspaceIdentifierKey}`);
             if (selectedPaneNode) {
                 selectedPaneNode.classList.add("active");
+                selectedPaneNode.style.animation = "revealFadeIn 0.4s ease forwards";
             }
+        });
+    });
+}
+
+/**
+ * HIGH-FIDELITY SCROLL REVEAL ENGINE
+ */
+function initializeScrollRevealEngine() {
+    const selectorsToAnimate = [
+        '.premium-card', 
+        '.stat-card', 
+        '.section-header', 
+        '.timeline-panel', 
+        '.roadmap-checkpoint'
+    ];
+    
+    selectorsToAnimate.forEach(selector => {
+        document.querySelectorAll(selector).forEach(element => {
+            element.classList.add('reveal-on-scroll');
+        });
+    });
+
+    const revealObserverOptions = {
+        root: null,
+        threshold: 0.12,
+        rootMargin: "0px 0px -40px 0px"
+    };
+
+    const revealCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible-active');
+                observer.unobserve(entry.target);
+            }
+        });
+    };
+
+    const observerInstance = new IntersectionObserver(revealCallback, revealObserverOptions);
+    
+    document.querySelectorAll('.reveal-on-scroll').forEach(targetNode => {
+        observerInstance.observe(targetNode);
+    });
+}
+
+/**
+ * PREMIUM MICRO-INTERACTIONS ENGINE
+ */
+function setupMicroInteractions() {
+    const actionButtons = document.querySelectorAll('.btn');
+    
+    actionButtons.forEach(button => {
+        button.addEventListener('mousedown', () => {
+            button.style.transform = 'scale(0.96)';
+        });
+        button.addEventListener('mouseup', () => {
+            button.style.transform = 'translateY(-2px) scale(1)';
         });
     });
 }

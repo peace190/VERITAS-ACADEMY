@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite International Pre-University Academy | Flagship Campus</title>
+    <title>VERITAS ACADEMY</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="main-header">
-        <div class="container header-container">
-            <div class="brand-identity">
-                <div class="brand-logo-frame"></div>
-                <span class="brand-title">VERITAS ACADEMY</span>
-            </div>
+    <!-- Universal Navigation Header -->
+<header class="main-header">
+    <div class="container header-container">
+        <a href="index.html" class="brand-identity" style="display: flex; align-items: center; gap: 0.75rem;">
+            <!-- The direct logo link is now fully integrated -->
+            <img src="https://img.sanishtech.com/u/d81d36e2ac3abb1ec59ba3db011d4316.jpg" alt="Veritas International Academy Crest" class="brand-logo-img">
+            <span class="brand-title">VERITAS ACADEMY</span>
+        </a>
             <nav class="main-navigation">
                 <ul>
                     <li><a href="index.html" class="nav-link">Home</a></li>
@@ -100,21 +102,27 @@
                 </article>
             </div>
         </section>
+<!-- Institutional Video Framework -->
+<section class="section-padding var-bg-light" style="background-color: var(--color-bg-light);">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2>Experience Veritas Academy</h2>
+            <p>Take a virtual tour of our state-of-the-art research laboratories, historic lecture chambers, and elite residences.</p>
+        </div>
+        
+        <!-- Streamable Responsive Iframe Wrapper Container -->
+        <div class="video-showcase-container" style="position: relative; padding-bottom: 56.25%; height: 0; max-width: 1000px; margin: 0 auto; box-shadow: var(--shadow-lg); border-radius: var(--radius-lg); overflow: hidden;">
+            <iframe 
+                src="https://player.cloudinary.com/embed/?cloud_name=dg8hzjbky&public_id=0.0-108.4_otawqh" 
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+                allowfullscreen 
+                scrolling="no" 
+                allow="encrypted-media">
+            </iframe>
+        </div>
 
-        <section class="section-padding var-bg-light" style="background-color: var(--color-bg-light);">
-            <div class="container">
-                <div class="section-header text-center">
-                    <h2>Experience Veritas Academy</h2>
-                    <p>Take a virtual tour of our state-of-the-art research laboratories, historic lecture chambers, and elite residences.</p>
-                </div>
-                <div class="video-showcase-container">
-                    <div class="video-placeholder-frame">
-                        <div class="video-play-button"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+    </div>
+</section>
         <section class="section-padding container">
             <div class="section-header text-center">
                 <h2>News & Institutional Circulars</h2>

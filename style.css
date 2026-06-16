@@ -159,12 +159,25 @@ img, svg {
     align-items: center;
     gap: 0.75rem;
 }
+/* --- Brand Identity Styling Updates --- */
+.brand-logo-img {
+    height: 48px; /* Scales the crest nicely inside the 80px high header */
+    width: auto;  /* Maintains the crisp aspect ratio of your original image */
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); /* Adds a subtle drop depth against the dark navy background */
+    transition: var(--transition-smooth);
+}
 
-.brand-logo-frame {
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, var(--color-accent), #FFFFFF);
-    border-radius: 50%;
+/* Micro-interaction: The crest lifts subtly on brand hover */
+.brand-identity:hover .brand-logo-img {
+    transform: translateY(-1px) scale(1.03);
+}
+
+/* Luxury Interaction: Logo transforms into matching academic gold when the user hovers over the brand identity link */
+.brand-identity:hover .brand-logo-svg {
+    color: var(--color-accent);
+    transform: rotate(-3deg) scale(1.05);
 }
 
 .brand-title {
@@ -322,10 +335,7 @@ img, svg {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-.card-body {
-    padding: 2rem;
+    object-position: top center; /* 🌟 FIXES CRITICAL CROP: Pinpoints and prioritizes faces/heads */
 }
 
 .card-tag {
@@ -346,7 +356,7 @@ img, svg {
     margin-bottom: 0.75rem;
 }
 
-/* --- Styled Video Presentation Framework --- */
+/* --- Cleaned Video Presentation Framework for Live Streams --- */
 .video-showcase-container {
     max-width: 1000px;
     margin: 0 auto;
@@ -355,7 +365,11 @@ img, svg {
     overflow: hidden;
     box-shadow: var(--shadow-lg);
     aspect-ratio: 16 / 9;
+    background-color: var(--color-primary); /* Keeps the frame clean while video streams initialize */
 }
+
+/* Note: You can completely delete or comment out the old .video-placeholder-frame 
+   and .video-play-button rules since the native HTML5 player handles UI states now! */
 
 .video-placeholder-frame {
     width: 100%;
@@ -760,6 +774,63 @@ img, svg {
     justify-content: space-between;
     font-size: 0.85rem;
     color: #94A3B8;
+}
+
+/* ==========================================================================
+   PREMIUM ACCELERATED ANIMATION SYSTEM
+   ========================================================================== */
+
+/* Baseline state for objects that will reveal as the user scrolls down */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform, opacity; /* Informs the browser to use GPU acceleration */
+}
+
+/* Activated animation state injected via app.js Intersection Observer */
+.reveal-on-scroll.visible-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered load delays for clean multi-column card balancing */
+.academic-pillars-grid > :nth-child(2),
+.news-grid > :nth-child(2),
+.governance-grid > :nth-child(2),
+.curriculum-grid > :nth-child(2) {
+    transition-delay: 0.15s;
+}
+
+.academic-pillars-grid > :nth-child(3),
+.news-grid > :nth-child(3),
+.governance-grid > :nth-child(3),
+.curriculum-grid > :nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+/* Core Form Error Shake Keyframe Logic */
+@keyframes uiElementShake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-6px); }
+    40%, 80% { transform: translateX(6px); }
+}
+
+.shake-ui-element {
+    animation: uiElementShake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* Portal Panel Smooth Workspace Fade In */
+@keyframes revealFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ==========================================================================
