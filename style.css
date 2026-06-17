@@ -866,3 +866,36 @@ img, svg {
     .step-roadmap::before { display: none; }
     .dashboard-matrix { grid-template-columns: 1fr; }
 }
+
+
+/* Styling for the 3-bar mobile toggle button */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.mobile-menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: #FFFFFF; /* Makes the bars bright white against your blue header */
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Screen Breakpoint: Show button on mobile phones */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex; /* Displays the 3 bars on mobile */
+    }
+    
+    .nav-link-container, .main-navigation ul {
+        display: none; /* Hides the wide text links so they don't break the layout */
+    }
+}
