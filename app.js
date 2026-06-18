@@ -223,3 +223,15 @@ function setupMicroInteractions() {
         });
     });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mainNav = document.querySelector('.main-navigation');
+
+    if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', () => {
+            // Toggles the mobile view open and closed
+            mainNav.classList.toggle('mobile-active');
+        });
+    }
+});
