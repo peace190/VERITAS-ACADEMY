@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal Gateway | Veritas Academy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background: #020b18; display: flex; justify-content: center; align-items: center; min-height: 100vh; font-family: sans-serif;">
+
+    <div style="background: #0b1524; padding: 2.5rem; border-radius: 8px; width: 100%; max-width: 400px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); border-top: 4px solid #3b82f6; text-align: center;">
+        <img src="https://img.sanishtech.com/u/1148759006e90441764b76858704d11d.jpg" alt="Logo" style="width: 70px; margin-bottom: 1rem;">
+        <h2 style="color: #ffffff; margin-bottom: 0.5rem; font-size: 1.5rem;">Veritas Student Portal</h2>
+        <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 2rem;">Enter your unique Academic Identification Token to sync your workspace.</p>
+        
+        <form id="portal-login-form">
+            <div style="text-align: left; margin-bottom: 1.5rem;">
+                <label style="color: #94a3b8; font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.5rem;">STUDENT IDENTIFICATION TOKEN</label>
+                <input type="text" id="student-token-input" placeholder="e.g., 2026-X9920" required style="width: 100%; padding: 0.75rem; background: #020b18; border: 1px solid #1e293b; border-radius: 4px; color: #ffffff; font-size: 1rem; box-sizing: border-box;">
+            </div>
+            <button type="submit" style="width: 100%; padding: 0.75rem; background: #3b82f6; color: #ffffff; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 1rem; transition: background 0.2s;">Authenticate & Sync</button>
+            <div id="login-error" style="color: #ef4444; font-size: 0.85rem; margin-top: 1rem; display: none;"></div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('portal-login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const token = document.getElementById('student-token-input').value.trim();
+            const errorDiv = document.getElementById('login-error');
+
+            // Contact our backend app.js to check if this student exists
+            fetch(`/api/student/${token}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success === false) {
+                        errorDiv.textContent = "❌ Invalid Token. Profile execution aborted.";
+                        errorDiv.style.display = 'block';
+                    } else {
+                        // Store the student's ID temporarily in the browser session memory
+                        sessionStorage.setItem('currentStudentId', token);
+                        // Send them straight into the dashboard workspace
+                        window.location.href = '/portal.html';
+                    }
+                })
+                .catch(err => {
+                    errorDiv.textContent = "❌ Server network interruption.";
+                    errorDiv.style.display = 'block';
+                });
+        });
+    </script>
+</body>
+</html>

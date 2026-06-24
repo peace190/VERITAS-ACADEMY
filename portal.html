@@ -5,14 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unified Student Workspace & Dashboard | Veritas Academy</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="https://img.sanishtech.com/u/1d43d54dbdf53e891be8bf5807420bd9.jpg">
+    <link rel="icon" type="image/png" href="https://img.sanishtech.com/u/1148759006e90441764b76858704d11d.jpg">
+    <style>
+        /* Utility state class to handle hidden layouts gracefully */
+        .layout-hidden {
+            display: none !important;
+        }
+    </style>
 </head>
 <body>
-<!-- Universal Navigation Header -->
 <header class="main-header">
   <div class="container header-container">
     <a href="index.html" class="brand-identity">
-      <img src="https://img.sanishtech.com/u/1d43d54dbdf53e891be8bf5807420bd9.jpg" alt="Veritas International Academy Crest" class="brand-logo-img">
+      <img src="https://img.sanishtech.com/u/1148759006e90441764b76858704d11d.jpg" alt="Veritas International Academy Crest" class="brand-logo-img">
       <span class="brand-title">VERITAS ACADEMY</span>
     </a>
 
@@ -35,12 +40,29 @@
   </div>
 </header>
 
-    <main class="portal-layout">
+    <section id="portal-login-gate" style="display: flex; justify-content: center; align-items: center; min-height: 80vh; padding: 1rem;">
+        <div style="background: #0b1524; padding: 2.5rem; border-radius: 8px; width: 100%; max-width: 400px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); border-top: 4px solid #3b82f6; text-align: center;">
+            <img src="https://img.sanishtech.com/u/1148759006e90441764b76858704d11d.jpg" alt="Logo" style="width: 70px; margin-bottom: 1rem;">
+            <h2 style="color: #ffffff; margin-bottom: 0.5rem; font-size: 1.5rem; font-family: sans-serif;">Veritas Student Portal</h2>
+            <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 2rem; font-family: sans-serif;">Enter your unique Academic Identification Token to sync your workspace.</p>
+            
+            <form id="portal-login-form">
+                <div style="text-align: left; margin-bottom: 1.5rem;">
+                    <label style="color: #94a3b8; font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.5rem; font-family: sans-serif;">STUDENT IDENTIFICATION TOKEN</label>
+                    <input type="text" id="student-token-input" placeholder="e.g., 2026-X9920" required style="width: 100%; padding: 0.75rem; background: #020b18; border: 1px solid #1e293b; border-radius: 4px; color: #ffffff; font-size: 1rem; box-sizing: border-box;">
+                </div>
+                <button type="submit" style="width: 100%; padding: 0.75rem; background: #3b82f6; color: #ffffff; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 1rem; transition: background 0.2s; font-family: sans-serif;">Authenticate & Sync</button>
+                <div id="login-error" style="color: #ef4444; font-size: 0.85rem; margin-top: 1rem; display: none; font-family: sans-serif;"></div>
+            </form>
+        </div>
+    </section>
+
+    <main id="portal-main-dashboard" class="portal-layout layout-hidden">
         <aside class="portal-sidebar">
             <div class="portal-profile-summary">
-                <div class="avatar-container">VP</div>
-                <h3 style="color: var(--color-accent); font-size: 1.15rem;">Vincent Peace</h3>
-                <span style="font-size: 0.8rem; color: #94A3B8;">ID: #2026-X9920</span>
+                <div class="avatar-container" id="portal-avatar">--</div>
+                <h3 id="portal-student-name" style="color: var(--color-accent); font-size: 1.15rem;">Loading Name...</h3>
+                <span id="portal-student-id" style="font-size: 0.8rem; color: #94A3B8;">ID: #--------</span>
             </div>
             <nav>
                 <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
@@ -52,21 +74,20 @@
         </aside>
 
         <section class="portal-workspace-pane">
-            
             <div id="tab-overview" class="portal-tab-content active">
                 <h2 style="margin-bottom: 2rem; border-bottom: 2px solid rgba(15,30,54,0.05); padding-bottom: 0.5rem;">Academic Overview</h2>
                 <div class="dashboard-matrix">
                     <div class="metric-data-card">
                         <span style="font-size: 0.8rem; text-transform: uppercase; color: #64748B; font-weight: 600;">Cumulative GPA</span>
-                        <h2 style="font-size: 2.5rem; margin-top: 0.5rem;">3.94 / 4.0</h2>
+                        <h2 id="metric-gpa" style="font-size: 2.5rem; margin-top: 0.5rem;">--</h2>
                     </div>
                     <div class="metric-data-card accented">
                         <span style="font-size: 0.8rem; text-transform: uppercase; color: #64748B; font-weight: 600;">Research Modules Completed</span>
-                        <h2 style="font-size: 2.5rem; margin-top: 0.5rem;">14 / 16</h2>
+                        <h2 id="metric-modules" style="font-size: 2.5rem; margin-top: 0.5rem;">--</h2>
                     </div>
                     <div class="metric-data-card">
                         <span style="font-size: 0.8rem; text-transform: uppercase; color: #64748B; font-weight: 600;">Attendance Coefficient</span>
-                        <h2 style="font-size: 2.5rem; margin-top: 0.5rem;">98.4%</h2>
+                        <h2 id="metric-attendance" style="font-size: 2.5rem; margin-top: 0.5rem;">--</h2>
                     </div>
                 </div>
 
@@ -144,11 +165,9 @@
                     </div>
                 </div>
             </div>
-
         </section>
     </main>
 
-    <script src="app.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
